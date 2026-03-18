@@ -12,7 +12,7 @@ import { CURRENT_YEAR } from "./../../lib/utils.ts";
 import { useRef, useState, type FormEvent, type ReactNode } from "react";
 
 interface FormProps {
-  onSubmitData: (data: Record<string, string>) => any;
+  onSubmitData: (data: Record<string, string>) => Promise<any>;
 }
 
 const bankCardSchema = z.object({
