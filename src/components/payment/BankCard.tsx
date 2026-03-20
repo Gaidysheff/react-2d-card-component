@@ -1,4 +1,4 @@
-import Globe from "@/assets/images/payments/Globe.svg";
+import Globe from "@/assets/images/payments/globe.svg";
 import { useForm, useStore, type AnyFieldApi } from "@tanstack/react-form";
 import Button from "./../uiComponents/Button.tsx";
 import { z } from "zod";
@@ -9,7 +9,7 @@ import Expiration from "./Expiration.tsx";
 import HolderName from "./HolderName.tsx";
 import { Spinner } from "./../ui/spinner.tsx";
 import { CURRENT_YEAR } from "./../../lib/utils.ts";
-import { useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useRef, useState, type SyntheticEvent, type ReactNode } from "react";
 
 interface FormProps {
   onSubmitData: (data: Record<string, string>) => Promise<any>;
@@ -111,7 +111,7 @@ const BankCard = ({ onSubmitData }: FormProps) => {
   const isSubmitting = useStore(bankCardForm.store, (s) => s.isSubmitting);
   const canSubmit = useStore(bankCardForm.store, (state) => state.canSubmit);
 
-  const submitHandler = (event: FormEvent) => {
+  const submitHandler = (event: SyntheticEvent) => {
     event.preventDefault();
     bankCardForm.handleSubmit();
   };
