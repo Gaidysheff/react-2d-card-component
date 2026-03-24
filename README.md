@@ -1,73 +1,33 @@
-# React + TypeScript + Vite
+# 💳 Interactive 2D Bank Card Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Live Demo](https://img.shields.io)](https://bank-card-2d.vercel.app/)
 
-Currently, two official plugins are available:
+![Preview](./docs/cover.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A sleek, production-ready React component for credit card data entry. Focused on smooth UX, real-time validation, and modern styling.
 
-## React Compiler
+### 🌟 Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dynamic Field Sync:** Real-time synchronization between form inputs and the card preview.
+- **Smart Validation:** Powered by **TanStack Form** and **Zod** for robust, type-safe error handling.
+- **Luhn Algorithm:** Automatic card number validation.
+- **Adaptive UI:** Built with **Tailwind CSS** and **Shadcn UI** for a clean, accessible interface.
+- **Responsive Design:** Works flawlessly on mobile and desktop devices.
 
-## Expanding the ESLint configuration
+### 🛠 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React 19** (Vite)
+- **TanStack Form** (State management)
+- **Zod** (Schema validation)
+- **Tailwind CSS** (Styling)
+- **Lucide React** (Icons)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🚀 Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. Clone the repo: `git clone [url]`
+2. Install dependencies: `npm install`
+3. Run dev server: `npm run dev`
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 💡 Why this approach?
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This component demonstrates how to handle complex form states without performance lags. By using **TanStack Form**, we ensure that only the necessary fields re-render, keeping the card preview animation buttery smooth.
