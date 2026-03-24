@@ -13,6 +13,7 @@ interface Props {
   inputRef: RefObject<HTMLInputElement | null>;
   nextRef: RefObject<HTMLSelectElement | null>;
   error?: ReactNode | null;
+  t: Record<string, string>;
 }
 
 const HolderName = ({
@@ -21,6 +22,7 @@ const HolderName = ({
   inputRef,
   // nextRef,
   error,
+  t,
 }: Props) => {
   return (
     <fieldset className="flex flex-col gap-1 sm:gap-2">
@@ -29,7 +31,7 @@ const HolderName = ({
         className="uppercase text-[0.5rem] 2xsm:text-[0.525rem]
         xsm:text-[0.66rem] sm:text-sm"
       >
-        Cardholder Name
+        {t.name}
       </label>
       <TooltipProvider>
         <Tooltip open={!!error}>

@@ -20,6 +20,7 @@ interface Props {
   inputRefs: RefObject<HTMLInputElement | null>[];
   nextRef: RefObject<HTMLInputElement | null>;
   setCardType: (type: string) => void;
+  t: Record<string, string>;
 }
 
 const CardNumber = ({
@@ -28,6 +29,7 @@ const CardNumber = ({
   nextRef,
   onFieldChange,
   setCardType,
+  t,
 }: Props) => {
   const fields = ["firstSet", "secondSet", "thirdSet", "fourthSet"] as const;
 
@@ -156,13 +158,13 @@ const CardNumber = ({
   return (
     <fieldset className="flex flex-col gap-2">
       <legend className="invisible h-0 w-0 absolute -top-[200vh]">
-        Card Number
+        {t.number}
       </legend>
       <label
         className="uppercase text-[0.5rem] 2xsm:text-[0.525rem]
           xsm:text-[0.6562rem] sm:text-sm"
       >
-        Card Number
+        {t.number}
       </label>
       <div
         className="flex justify-between items-center text-myMainColorDarker
@@ -228,8 +230,7 @@ const CardNumber = ({
               className="text-[0.5rem] 2xsm:text-[0.7rem] xsm:text-[0.9rem]
               sm:text-[1.1rem]"
             >
-              <p>If your card number has 19 digits,</p>
-              <p>please, enter additional 3 digits over here.</p>
+              {t.number_tooltip}
             </TooltipContent>
           </Tooltip>
         </div>

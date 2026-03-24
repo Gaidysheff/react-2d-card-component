@@ -8,33 +8,34 @@ import CardVerificationCode from "./CardVerificationCode.tsx";
 import Expiration from "./Expiration.tsx";
 import HolderName from "./HolderName.tsx";
 import { Spinner } from "./../ui/spinner.tsx";
-import { CURRENT_YEAR } from "./../../lib/utils.ts";
+import { CURRENT_YEAR } from "@/lib/utilities.ts";
 import { useRef, useState, type SyntheticEvent, type ReactNode } from "react";
 
 interface FormProps {
   onSubmitData: (data: Record<string, string>) => Promise<any>;
+  t: Record<string, string>;
 }
 
 const bankCardSchema = z.object({
   userName: z
     .string()
-    .min(1, { message: "Name is required" })
-    .min(2, { message: "Name must be at least 2 characters" })
-    .regex(/^[a-zA-Z\s]+$/, "Only latin letters"),
+    .min(1, { message: "required" })
+    .min(2, { message: "two_chars" })
+    .regex(/^[a-zA-Z\s]+$/, { message: "latin_chars" }),
   cvc: z
     .string()
-    .regex(/^\d+$/, { message: "cvc must contain only digits" })
-    .length(3, "CVC must be 3 digits"),
+    .regex(/^\d+$/, { message: "cvc_digits" })
+    .length(3, { message: "cvc_three" }),
   month: z.string().min(1),
   year: z.string().min(4),
-  firstSet: z.string().min(1).length(4, "4 digits required"),
-  secondSet: z.string().min(1).length(4, "4 digits required"),
-  thirdSet: z.string().min(1).length(4, "4 digits required"),
-  fourthSet: z.string().min(1).length(4, "4 digits required"),
+  firstSet: z.string().min(1).length(4, { message: "no_of_digits" }),
+  secondSet: z.string().min(1).length(4, { message: "no_of_digits" }),
+  thirdSet: z.string().min(1).length(4, { message: "no_of_digits" }),
+  fourthSet: z.string().min(1).length(4, { message: "no_of_digits" }),
   additionalSet: z
     .string()
     .refine((val) => val.length === 0 || val.length === 3, {
-      message: "Must be 3 digits if used",
+      message: "additional_digits",
     }),
 });
 
@@ -59,7 +60,7 @@ function getFieldError(field: AnyFieldApi): ReactNode {
   );
 }
 
-const BankCard = ({ onSubmitData }: FormProps) => {
+const BankCard = ({ onSubmitData, t }: FormProps) => {
   const bankCardForm = useForm({
     defaultValues: {
       userName: "",
@@ -145,6 +146,7 @@ const BankCard = ({ onSubmitData }: FormProps) => {
             setCardType={setCardType}
             values={formValues}
             onFieldChange={updateField}
+            t={t}
           />
 
           <div className="flex justify-between gap-2">
@@ -157,6 +159,7 @@ const BankCard = ({ onSubmitData }: FormProps) => {
                   userName={formValues.userName}
                   onFieldChange={updateField}
                   error={getFieldError(field)}
+                  t={t}
                 />
               )}
             />
@@ -168,6 +171,7 @@ const BankCard = ({ onSubmitData }: FormProps) => {
               month={formValues.month}
               year={formValues.year}
               onFieldChange={updateField}
+              t={t}
             />
           </div>
         </div>
@@ -193,6 +197,7 @@ const BankCard = ({ onSubmitData }: FormProps) => {
                 cvc={formValues.cvc}
                 onFieldChange={updateField}
                 error={getFieldError(field)}
+                t={t}
               />
             )}
           />
@@ -212,9 +217,9 @@ const BankCard = ({ onSubmitData }: FormProps) => {
                 <Spinner className="size-5 text-red-500" />
               </div>
             ) : !canSubmit ? (
-              "Fill in the card details to Pay"
+              `${t.fill}`
             ) : (
-              "Pay $100.00"
+              `${t.pay}`
             )}
           </Button>
         </div>

@@ -1,4 +1,4 @@
-import { CURRENT_YEAR } from "./../../lib/utils.ts";
+import { CURRENT_YEAR } from "@/lib/utilities.ts";
 import { type BankCardSchemaType } from "./BankCard.tsx";
 import { type RefObject } from "react";
 
@@ -9,6 +9,7 @@ interface Props {
   yearRef: RefObject<HTMLSelectElement | null>;
   nextRef: RefObject<HTMLInputElement | null>;
   onFieldChange: (field: keyof BankCardSchemaType, value: string) => void;
+  t: Record<string, string>;
 }
 
 const Expiration = ({
@@ -18,6 +19,7 @@ const Expiration = ({
   yearRef,
   nextRef,
   onFieldChange,
+  t,
 }: Props) => {
   const dynamicYears = Array.from({ length: 11 }, (_, i) => CURRENT_YEAR + i);
 
@@ -28,13 +30,13 @@ const Expiration = ({
   return (
     <fieldset className="flex flex-col justify-between gap-1 sm:gap-2">
       <legend className="invisible h-0 w-0 absolute -top-[200vh]">
-        Expiration
+        {t.valid}
       </legend>
       <label
         className="uppercase text-[0.5rem] 2xsm:text-[0.525rem]
         xsm:text-[0.66rem] sm:text-sm"
       >
-        Expiration
+        {t.valid}
       </label>
       <div className="flex gap-1 sm:gap-2">
         <select

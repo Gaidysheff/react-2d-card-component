@@ -12,6 +12,7 @@ interface Props {
   inputRef: RefObject<HTMLInputElement | null>;
   onFieldChange: (field: keyof BankCardSchemaType, value: string) => void;
   error?: ReactNode | null;
+  t: Record<string, string>;
 }
 
 const CardVerificationCode = ({
@@ -19,6 +20,7 @@ const CardVerificationCode = ({
   onFieldChange,
   inputRef,
   error,
+  t,
 }: Props) => {
   return (
     <div
@@ -31,7 +33,7 @@ const CardVerificationCode = ({
         className="uppercase text-[0.5rem] 2xsm:text-[0.525rem]
         xsm:text-[0.66rem] sm:text-sm"
       >
-        CVC
+        {t.cvc}
       </label>
 
       <TooltipProvider>
