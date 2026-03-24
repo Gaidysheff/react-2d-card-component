@@ -9,11 +9,12 @@ import Expiration from "./Expiration.tsx";
 import HolderName from "./HolderName.tsx";
 import { Spinner } from "./../ui/spinner.tsx";
 import { CURRENT_YEAR } from "@/lib/utilities.ts";
-import { useRef, useState, type SyntheticEvent, type ReactNode } from "react";
+import { useRef, useState, type SyntheticEvent } from "react";
 
 interface FormProps {
   onSubmitData: (data: Record<string, string>) => Promise<any>;
   t: Record<string, string>;
+  e: Record<string, string>;
 }
 
 const bankCardSchema = z.object({
@@ -41,26 +42,39 @@ const bankCardSchema = z.object({
 
 export type BankCardSchemaType = z.infer<typeof bankCardSchema>;
 
-function getFieldError(field: AnyFieldApi): ReactNode {
-  const errors = field.state.meta.errors;
+function getFieldError(field: AnyFieldApi, e: any) {
+  const error = field.state.meta.errors[0];
+  const errorKey = typeof error === "string" ? error : error?.message;
+  if (!field.state.meta.isTouched || !errorKey) return null;
 
-  if (errors.length === 0 || !field.state.meta.isTouched) return null;
+  const errorMessage = e?.[errorKey] || errorKey;
 
   return (
-    <ul
-      className="text-[0.5rem] 2xsm:text-[0.7rem] xsm:text-[0.9rem]
-      sm:text-[1.1rem]"
-    >
-      {errors.map((err, index) => (
-        <li key={index}>
-          {typeof err === "string" ? err : err?.message || ""}
-        </li>
-      ))}
-    </ul>
+    <div className="h-4">
+      <em className="italic">{errorMessage}</em>
+    </div>
   );
 }
+// function getFieldError(field: AnyFieldApi): ReactNode {
+//   const errors = field.state.meta.errors;
 
-const BankCard = ({ onSubmitData, t }: FormProps) => {
+//   if (errors.length === 0 || !field.state.meta.isTouched) return null;
+
+//   return (
+//     <ul
+//       className="text-[0.5rem] 2xsm:text-[0.7rem] xsm:text-[0.9rem]
+//       sm:text-[1.1rem]"
+//     >
+//       {errors.map((err, index) => (
+//         <li key={index}>
+//           {typeof err === "string" ? err : err?.message || ""}
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// }
+
+const BankCard = ({ onSubmitData, t, e }: FormProps) => {
   const bankCardForm = useForm({
     defaultValues: {
       userName: "",
@@ -158,7 +172,7 @@ const BankCard = ({ onSubmitData, t }: FormProps) => {
                   nextRef={monthRef}
                   userName={formValues.userName}
                   onFieldChange={updateField}
-                  error={getFieldError(field)}
+                  error={getFieldError(field, e)}
                   t={t}
                 />
               )}
@@ -196,7 +210,7 @@ const BankCard = ({ onSubmitData, t }: FormProps) => {
                 inputRef={cvcRef}
                 cvc={formValues.cvc}
                 onFieldChange={updateField}
-                error={getFieldError(field)}
+                error={getFieldError(field, e)}
                 t={t}
               />
             )}

@@ -3,7 +3,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./../ui/tooltip.tsx";
+} from "./../ui-modified/tooltip.tsx";
 import { type ReactNode, type RefObject } from "react";
 import { type BankCardSchemaType } from "./BankCard.tsx";
 
@@ -58,7 +58,9 @@ const CardVerificationCode = ({
             />
           </TooltipTrigger>
 
-          <TooltipContent side="top">{error}</TooltipContent>
+          <TooltipContent side="top" redTooltip>
+            {error}
+          </TooltipContent>
         </Tooltip>
       </TooltipProvider>
     </div>

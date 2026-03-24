@@ -15,6 +15,8 @@ export const TRANSLATIONS = {
     slider_chroma: "Chroma",
     slider_reset: "Reset to original color",
     language: "Language",
+    result:
+      "Your card details have been conditionally transferred to the server.",
   },
   ru: {
     // ---form---
@@ -32,6 +34,7 @@ export const TRANSLATIONS = {
     slider_chroma: "Насыщенность",
     slider_reset: "Сбросить до исходного цвета",
     language: "Язык",
+    result: "Данные вашей карты условно переданы на сервер.",
   },
 };
 

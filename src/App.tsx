@@ -62,7 +62,6 @@ function App() {
 
   const t = TRANSLATIONS[lang]; // Помощник для перевода основного
   const e = ERRORS[lang]; // Помощник для перевода ошибок
-  console.log("🚀 ~ App ~ e:", e);
 
   useEffect(() => {
     localStorage.setItem("app-lang", lang);
@@ -171,12 +170,12 @@ function App() {
 
       <div className="flex flex-col items-center justify-center">
         <div className="my-10 sm:my-20 z-4">
-          <BankCard onSubmitData={CardDataHandler} t={t} />
+          <BankCard onSubmitData={CardDataHandler} t={t} e={e} />
         </div>
       </div>
       {isSent && (
-        <p className="text-3xl text-red-500 italic text-center">
-          Данные вашей карты условно переданы на сервер
+        <p className="text-3xl text-myMainColor italic text-center">
+          {t.result}
         </p>
       )}
     </section>

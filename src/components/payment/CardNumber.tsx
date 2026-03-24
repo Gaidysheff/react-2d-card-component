@@ -10,7 +10,11 @@ import Mir from "@/assets/images/payment/mir.svg";
 import RuPay from "@/assets/images/payment/ru_pay.svg";
 import UnionPay from "@/assets/images/payment/union_pay.svg";
 import Visa from "@/assets/images/payment/visa.svg";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./../ui/tooltip.tsx";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "./../ui-modified/tooltip.tsx";
 import React, { useEffect, useState, type RefObject } from "react";
 import { type BankCardSchemaType } from "./BankCard.tsx";
 
