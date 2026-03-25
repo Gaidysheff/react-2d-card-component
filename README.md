@@ -1,8 +1,12 @@
 # 💳 Interactive 2D Bank Card Component
 
-[![Live Demo](https://img.shields.io)](https://bank-card-2d.vercel.app/)
+[![Live Demo](https://img.shields.io)](https://bank-card-2d.vercel.app)
 
 ![Preview](./docs/cover.png)
+
+[Live Demo on Vercel](https://bank-card-2d.vercel.app) 🚀
+
+---
 
 A sleek, production-ready React component for credit card data entry. Focused on smooth UX, real-time validation, and modern styling.
 
@@ -31,3 +35,12 @@ A sleek, production-ready React component for credit card data entry. Focused on
 ### 💡 Why this approach?
 
 This component demonstrates how to handle complex form states without performance lags. By using **TanStack Form**, we ensure that only the necessary fields re-render, keeping the card preview animation buttery smooth.
+
+### 🔃 Difference from 3D version
+
+This is a lightweight 2D version of the animated bank card. If you are looking for the full 3D experience with OKLCH color customization, check out **[![3D version]](https://bankcard3d.vercel.app)**.
+
+### 👤 Author
+
+Developed with ❤️ by **Gaidysheff**
+GitHub Profile
