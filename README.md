@@ -44,3 +44,7 @@ This is a lightweight 2D version of the animated bank card. If you are looking f
 
 Developed with ❤️ by **Gaidysheff**
 GitHub Profile
+
+---
+
+Licensed under the MIT License.
